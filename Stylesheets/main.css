@@ -1,0 +1,54 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #000;
+}
+
+#container {
+    display: grid;
+    grid-template-areas: 
+    "nav nav"
+    "banner banner"
+    "a1 a2"
+    "footer footer";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100px 400px 200px 300px;
+    
+}
+
+header {
+    grid-area: nav;
+    background-color: #fff;
+    display: flex;
+}
+
+#banner{
+    grid-area: banner;
+    background-color: #ffcccc;
+    display: flex;
+    justify-content: center;
+}
+
+#a1 {
+    grid-area: a1;
+    background-color: #ffc506;
+    display: flex;
+}
+
+#a2 {
+    grid-area: a2;
+    background-color: rgb(46, 112, 92);
+    display: flex;
+}
+
+footer {
+    grid-area: footer;
+    background-color: rgb(36, 17, 207);
+    display: flex;
+}
+
+.spinnerImage {
+    height: 100%;
+    object-fit: fill;
+}
