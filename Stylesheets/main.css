@@ -17,20 +17,22 @@ body {
 }
 
 header {
+    position: absolute;
+    width: 100%;
     grid-area: nav;
     background-color: #fff;
     height: 50px;
-    transition: height 0.3s ease-in-out;
+    z-index: 5;
 }
 
 nav{
     display: grid;
-    
+    height: 100%;
     align-items: center;
     grid-template-areas: 
     "burger logotype search";
     grid-template-columns: 15% 25% 60%;
-    z-index: 20;
+    background-color: #ffc506;
 }
 
 #banner{
@@ -112,9 +114,29 @@ footer {
 
 #burgermenu{
     position: absolute;
-    top: -300px;
-    height: 300px;
+    top: -50px;
+    height: 100px;
     width: 100%;
-    background-color: bisque;
-    z-index: 10;
+    background-color: black;
+    transition: top 0.3s ease-in-out;
+    z-index: -1;
+}
+
+#burgermenu ul {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    list-style: none;
+    justify-content: space-evenly;
+    padding: 0;
+    margin: 0 10px;
+}
+
+.navlink {
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    
 }

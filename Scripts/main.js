@@ -35,15 +35,15 @@ document.querySelector("#search").addEventListener('click', toggleSearch)
 
 let burgerMenuOpen = false
 const slideBurgerOut = ()=>{
-    let menu = document.querySelector("header")
-    menu.style.height = "200px"
+    let menu = document.querySelector("#burgermenu")
+    menu.style.top = "50px"
     document.querySelector("#burger").src = "Resources/Images/burgerOpen.svg"
     burgerMenuOpen = true;
 }
 
 const slideBurgerIn = ()=>{
-    let menu = document.querySelector("header")
-    menu.style.height = "50px"
+    let menu = document.querySelector("#burgermenu")
+    menu.style.top = "-50px"
     document.querySelector("#burger").src = "Resources/Images/burgerClosed.svg"
     burgerMenuOpen = false;
 }
