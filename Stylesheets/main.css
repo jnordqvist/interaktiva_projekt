@@ -8,19 +8,29 @@ body {
 #container {
     display: grid;
     grid-template-areas: 
-    "nav nav"
     "banner banner"
     "a1 a2"
     "footer footer";
     grid-template-columns: 50% 50%;
-    grid-template-rows: 100px 400px 200px 300px;
+    grid-template-rows: 400px 200px 300px;
     
 }
 
 header {
     grid-area: nav;
     background-color: #fff;
-    display: flex;
+    height: 50px;
+    transition: height 0.3s ease-in-out;
+}
+
+nav{
+    display: grid;
+    
+    align-items: center;
+    grid-template-areas: 
+    "burger logotype search";
+    grid-template-columns: 15% 25% 60%;
+    z-index: 20;
 }
 
 #banner{
@@ -49,6 +59,62 @@ footer {
 }
 
 .spinnerImage {
-    height: 100%;
+    height: auto;
+    max-width: 100%;
     object-fit: fill;
+}
+
+#logo{
+    text-decoration: none;
+    color: orchid;
+    grid-area: logotype;
+}
+
+#burger{
+    min-width: 48px;
+    grid-area: burger;
+}
+
+#searchContainer{
+    grid-area: search;
+    display: flex;
+    justify-content: right;
+}
+#searchContainerExpanded{
+    display: flex;
+    height: 50px;
+    background-color: bisque;
+    grid-area: burger;
+    grid-column: 1 / span 3;
+    justify-content: right;
+    width: 100%;
+}
+#searchContainerExpanded form{
+    display: block;
+    width: 100%;
+}
+#searchContainerExpanded form input{
+    display: block;
+    height: 100%;
+    background-color: transparent;
+    font-size: 25px;
+    border: none;
+    margin: 0;
+    width: 80%;
+}
+
+#searchContainer form{
+    display: none;
+}
+#searchContainer img{
+    min-width: 36px;
+}
+
+#burgermenu{
+    position: absolute;
+    top: -300px;
+    height: 300px;
+    width: 100%;
+    background-color: bisque;
+    z-index: 10;
 }
