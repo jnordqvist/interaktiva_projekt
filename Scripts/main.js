@@ -28,17 +28,20 @@ const movie = {
     "Response":"True"}
 
 const movieTest = () =>{
-    let image = document.querySelector("#spinnerImage")
-    image.src = movie.Poster
-    let title = document.querySelector("#title")
-    title.textContent = movie.Title
-    let plot = document.querySelector("#plot")
-    plot.innerHTML = movie.Plot.substr(0,50) + '...' + plot.innerHTML
-    document.querySelector("#CMDbRating").textContent = "3.2 / 10"
+    let image = document.querySelectorAll(".spinnerImage")
+    let title = document.querySelectorAll(".title")
+    let plot = document.querySelectorAll(".plot")
+    for (let i = 0; i < image.length; i++) {
+        image[i].src = movie.Poster
+        title[i].textContent = movie.Title
+        plot[i].innerHTML = movie.Plot.substr(0,50) + '...' + plot
+        document.querySelectorAll(".CMDbRating").textContent = "3.2 / 10"
+        document.querySelectorAll(".IMDbRating").textContent = movie.imdbRating + `(${movie.imdbVotes})`
+    }
+}
 
-    document.querySelector("#IMDbRating").textContent = movie.imdbRating + `(${movie.imdbVotes})`
-}    
-movieTest()
+
+
 
 const expandPlot=()=>{
     document.querySelector("#plot").innerHTML = movie.Plot
@@ -105,3 +108,38 @@ const toggleBurger = () =>{
 }
 
 document.querySelector("#burger").addEventListener('click', toggleBurger)
+
+
+const fetchMovies = () => {
+    let item = document.getElementsByClassName('carouselItem');
+    
+    let template = 
+    `<img class="spinnerImage"/>
+    <div class="spinnerContent">
+        <h1 class="title">title</h1>
+        <p class="plot">
+            <a id="expandPlot" href="#">Read More</a>
+        </p>
+        <div class="ratings">
+            <div class="ratingContainer">
+                <img src="Resources/Images/cmdblogo.png"> 
+                <p class="CMDbRating"></p>
+            </div>
+            <div class="ratingContainer">
+                <img src="Resources/Images/imdblogo.png"> 
+                <p class="IMDbRating"></p>
+            </div>
+        </div>
+    </div>`
+   
+    for (let i = 0; i < item.length; i++) {
+        let container = document.createElement('div')
+        container.id = 'c'
+        container.innerHTML = template
+        item[i].appendChild(container)
+    }
+
+}
+
+fetchMovies()    
+movieTest()

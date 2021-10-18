@@ -4,17 +4,17 @@ body {
     box-sizing: border-box;
     background-color: #000;
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
 #container {
     display: grid;
     grid-template-areas: 
-    "banner banner"
-    "a1 a2"
-    "footer footer";
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 400px 200px 300px;
-    
+    "banner"
+    "a1"
+    "footer";
+    grid-template-rows: 400px 1fr 200px;
+    overflow-x:hidden;
 }
 
 header {
@@ -41,11 +41,12 @@ nav{
     display: flex;
     justify-content: center;
     background: linear-gradient(transparent, black) ;
-    color: white;
+    width: 100vw;
     max-width: 100%;
+    z-index: 2;
 }
 
-#ratings img{
+.ratings img{
     width: auto;
     max-height: 15px;
     margin: 0px 5px;
@@ -67,17 +68,24 @@ nav{
     grid-area: a1;
     background-color: #ffc506;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.carouselItem {
+    width: 100vw;
+    height: 300px;
+}
+
+#c {
+    display: flex;
+}
+
 
 input:focus{
     outline:none;
 }
 
-#a2 {
-    grid-area: a2;
-    background-color: rgb(46, 112, 92);
-    display: flex;
-}
 
 footer {
     grid-area: footer;
@@ -89,12 +97,15 @@ footer a{
     text-decoration: none;
 }
 
-#spinnerImage {
+.spinnerImage {
     max-height: 250px;
     width: auto;
-    z-index: -2;
+    z-index: 1;
 }
 
+.spinnerContent p {
+    color: #fff;
+}
 
 #logo{
     text-decoration: none;
