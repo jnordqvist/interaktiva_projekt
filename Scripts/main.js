@@ -31,29 +31,31 @@ const movieTest = () =>{
     let image = document.querySelectorAll(".spinnerImage")
     let title = document.querySelectorAll(".title")
     let plot = document.querySelectorAll(".plot")
+    let imdb = document.querySelectorAll(".CMDbRating")
+    let cmdb = document.querySelectorAll(".IMDbRating")
+    let rank = document.querySelectorAll(".rank")
+    
     for (let i = 0; i < image.length; i++) {
         image[i].src = movie.Poster
         title[i].textContent = movie.Title
-        plot[i].innerHTML = movie.Plot.substr(0,50) + '...' + plot
-        document.querySelectorAll(".CMDbRating").textContent = "3.2 / 10"
-        document.querySelectorAll(".IMDbRating").textContent = movie.imdbRating + `(${movie.imdbVotes})`
+        plot[i].innerHTML = movie.Plot.substr(0,50) + '...' + plot[i].innerHTML
+        cmdb[i].textContent = "3.2 / 10"
+        imdb[i].textContent = movie.imdbRating + `(${movie.imdbVotes})`
+        rank[i].textContent = i+1
     }
 }
 
 
 
 
-const expandPlot=()=>{
-    document.querySelector("#plot").innerHTML = movie.Plot
-}
-
-document.querySelector("#expandPlot").addEventListener('click', expandPlot)
 
 const searchClicked = ()=>{
-    let container = document.querySelector("#searchContainer")
-    container.id = 'searchContainerExpanded'
-    document.querySelector("#search").src = "Resources/Images/close.svg"
-    console.log('hello2')
+    
+        let container = document.querySelector("#searchContainer")
+        container.id = 'searchContainerExpanded'
+        document.querySelector("#search").src = "Resources/Images/close.svg"
+    
+    
 }
 
 function openSearch(){
@@ -72,12 +74,16 @@ function closeSearch(){
 }
 
 function toggleSearch(){
+    let x = window.matchMedia("(max-width : 999px)")
+    console.log(x.matches)
+    if(x.matches){
     if (searching) {
         return closeSearch()
     }
     else{
         return openSearch()
     }
+}
 }
 
 document.querySelector("#search").addEventListener('click', toggleSearch)
@@ -118,7 +124,7 @@ const fetchMovies = () => {
     <div class="spinnerContent">
         <h1 class="title">title</h1>
         <p class="plot">
-            <a id="expandPlot" href="#">Read More</a>
+            <a class="expandPlot" href="#">Read More</a>
         </p>
         <div class="ratings">
             <div class="ratingContainer">
@@ -130,6 +136,7 @@ const fetchMovies = () => {
                 <p class="IMDbRating"></p>
             </div>
         </div>
+        <div class="rank">1</div>
     </div>`
    
     for (let i = 0; i < item.length; i++) {
@@ -143,3 +150,8 @@ const fetchMovies = () => {
 
 fetchMovies()    
 movieTest()
+const expandPlot=()=>{
+    document.querySelectorAll(".plot")[0].innerHTML = movie.Plot
+}
+
+document.querySelectorAll(".expandPlot")[0].addEventListener('click', expandPlot)

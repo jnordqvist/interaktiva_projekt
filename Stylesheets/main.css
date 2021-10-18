@@ -8,18 +8,15 @@ body {
 }
 
 #container {
-    display: grid;
-    grid-template-areas: 
-    "banner"
-    "a1"
-    "footer";
-    grid-template-rows: 400px 1fr 200px;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
     overflow-x:hidden;
 }
 
 header {
     width: 100%;
-    grid-area: nav;
+    position: relative;
     background-color: #fff;
     height: 50px;
     z-index: 5;
@@ -36,14 +33,28 @@ nav{
 }
 
 #banner{
-    grid-area: banner;
     background-color: #ffcccc;
+    color: white;
     display: flex;
     justify-content: center;
     background: linear-gradient(transparent, black) ;
     width: 100vw;
-    max-width: 100%;
+    max-width: 60%;
     z-index: 2;
+}
+
+.rank{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: gray;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .ratings img{
@@ -65,8 +76,8 @@ nav{
 }
 
 #a1 {
-    grid-area: a1;
     background-color: #ffc506;
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -88,7 +99,6 @@ input:focus{
 
 
 footer {
-    grid-area: footer;
     background-color: red;
     display: flex;
 }
@@ -103,8 +113,8 @@ footer a{
     z-index: 1;
 }
 
-.spinnerContent p {
-    color: #fff;
+.spinnerContent{
+    position: relative;
 }
 
 #logo{
@@ -179,6 +189,77 @@ footer a{
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
-    color: #fff;
-    
+}
+
+#navlinks{
+    display:none;
+
+}
+
+@media (min-width: 600px){
+    footer{
+        background-color: green;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    footer{
+        background-color: greenyellow;
+    }
+    #burgermenu{
+        display:none
+    }
+
+    #burger{
+        display: none;
+    }
+
+    nav{
+        grid-template-areas: 
+        "logotype navlinks search";
+        grid-template-columns: 15% 40% 45%;
+    }
+
+    #navlinks{
+        display:inline;
+        grid-area: navlinks;
+    }
+
+    #navlinks ul{
+        display: flex;
+    height: 100%;
+    list-style: none;
+    justify-content: space-evenly;
+    padding: 0;
+    margin: 0 10px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    #searchContainer{
+        display: flex;
+        height: 50px;
+        background-color: bisque;
+        justify-content: right;
+        width: 100%;
+    }
+    #searchContainer form{
+        display: inline;
+    }
+
+    #searchContainer form{
+        display: block;
+        width: 100%;
+    }
+
+    #searchContainer form input{
+        display: block;
+        height: 100%;
+        background-color: transparent;
+        font-size: 25px;
+        border: none;
+        margin: 0;
+        width: 80%;
+    }
 }
