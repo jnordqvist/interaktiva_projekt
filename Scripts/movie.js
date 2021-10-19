@@ -27,22 +27,61 @@ const movie = {
     "Website":"N/A",
     "Response":"True"}
 
+
+
+
 const movieTest = () =>{
-    let image = document.querySelectorAll(".spinnerImage")
-    let title = document.querySelectorAll(".title")
-    let plot = document.querySelectorAll(".plot")
-    let imdb = document.querySelectorAll(".CMDbRating")
-    let cmdb = document.querySelectorAll(".IMDbRating")
-    let rank = document.querySelectorAll(".rank")
+    let image = document.querySelector(".poster")
+    let title = document.querySelector(".title")
+    let releaseDate = document.querySelector("#releaseDate")
+    let director = document.querySelector("#director")
+    let plot = document.querySelector(".plot")
+    let runtime = document.querySelector("#runtime")
+    let genre = document.querySelector("#genre")
+    let actors = document.querySelector("#actors")
+    document.querySelector("#awards").textContent = movie.Awards
+
+    image.src = movie.Poster
+    title.textContent = `${movie.Title} (${movie.Year})`
+    director.textContent = `Directed by ${movie.Director}`
+    releaseDate.textContent = movie.Released
+    plot.innerHTML = movie.Plot
+    runtime.textContent = movie.Runtime
+    genre.textContent = movie.Genre
+    actors.textContent = movie.Actors
+
+
+    let parent = document.querySelector(".ratings")
+    let grade = '3/10'
+    let template = 
+        `<div class="ratingContainer">
+        <img src="Resources/Images/cmdblogo.png"> 
+        <p class="CMDbRating">CMDb: ${grade}</p>
+        </div>`
+
+        let container = document.createElement('div')
+        container.class = 'ratingContainer'
+        container.innerHTML = template
+        parent.appendChild(container)
+
+    movie.Ratings.forEach(rating => {
+        let site = rating.Source
+        let grade = rating.Value
+
+        let imageSource = "cmdblogo"
+        let template = 
+        `<div class="ratingContainer">
+        <img src="Resources/Images/${imageSource}.png"> 
+        <p class="CMDbRating">${site}: ${grade}</p>
+        </div>`
+
+        let container = document.createElement('div')
+        container.class = 'ratingContainer'
+        container.innerHTML = template
+        parent.appendChild(container)
+    });
     
-    for (let i = 0; i < image.length; i++) {
-        image[i].src = movie.Poster
-        title[i].textContent = movie.Title
-        plot[i].innerHTML = movie.Plot.substr(0,50) + '...' + plot[i].innerHTML
-        cmdb[i].textContent = "3.2 / 10"
-        imdb[i].textContent = movie.imdbRating + `(${movie.imdbVotes})`
-        rank[i].textContent = i+1
-    }
+
 }
 
 
@@ -113,43 +152,6 @@ const toggleBurger = () =>{
 
 document.querySelector("#burger").addEventListener('click', toggleBurger)
 
-
-const fetchMovies = () => {
-    let item = document.getElementsByClassName('carouselItem');
-    
-    let template = 
-    `<img class="spinnerImage"/>
-    <div class="spinnerContent">
-        <h1 class="title">title</h1>
-        <p class="plot">
-            <a class="expandPlot" href="#">Read More</a>
-        </p>
-        <div class="ratings">
-            <div class="ratingContainer">
-                <img src="Resources/Images/cmdblogo.png"> 
-                <p class="CMDbRating"></p>
-            </div>
-            <div class="ratingContainer">
-                <img src="Resources/Images/imdblogo.png"> 
-                <p class="IMDbRating"></p>
-            </div>
-        </div>
-        <div class="rank">1</div>
-    </div>`
-   
-    for (let i = 0; i < item.length; i++) {
-        let container = document.createElement('div')
-        container.id = 'c'
-        container.innerHTML = template
-        item[i].appendChild(container)
-    }
-
-}
-
-fetchMovies()    
+  
 movieTest()
-const expandPlot=()=>{
-    document.querySelectorAll(".plot")[0].innerHTML = movie.Plot
-}
 
-document.querySelectorAll(".expandPlot")[0].addEventListener('click', expandPlot)
